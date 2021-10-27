@@ -10,7 +10,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index_page():
-    return render_template("index.html")
+    # return render_template("index.html")
+    return "This is business homepage"
 
 # newsId = shortuuid.uuid(url)
 
@@ -36,7 +37,8 @@ def business():
 def business_id(businessID):
     print(businessID)
     if flask.request.method == 'GET':
-        return render_template("business_id.html", businessID=businessID, jsonfile=json.dumps(get_business_by_id(businessID)))
+        return json.dumps(get_business_by_id(businessID))
+        # return render_template("business_id.html", businessID=businessID, jsonfile=json.dumps(get_business_by_id(businessID)))
         # get_user_info(userID) - userID get from url -> JSON
         #return json.dumps(get_user_by_id(userID))
 
@@ -66,8 +68,8 @@ def business_id_address(businessID):
         # Insert new record to user_address
 
     elif flask.request.method == 'GET':
-        # return json.dumps(get_address_by_uid(userID))
-        return render_template("business_id_address.html", businessID=businessID, jsonfile=json.dumps(get_address_by_bid(businessID)))
+        return json.dumps(get_address_by_bid(businessID))
+        # return render_template("business_id_address.html", businessID=businessID, jsonfile=json.dumps(get_address_by_bid(businessID)))
 
 
         # join user with user_address and return
@@ -94,7 +96,8 @@ def address():
 @app.route('/address/<addressID>', methods=['GET', 'POST', 'DELETE'])
 def address_id(addressID):
     if flask.request.method == 'GET':
-        return render_template("address_id.html", addressID=addressID, jsonfile=json.dumps(get_address_by_aid(addressID)))
+        return json.dumps(get_address_by_aid(addressID))
+        # return render_template("address_id.html", addressID=addressID, jsonfile=json.dumps(get_address_by_aid(addressID)))
 
     elif flask.request.method == 'POST':
         if "delete" in flask.request.form:
