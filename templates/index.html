@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Our Company</title>
+</head>
+
+<body>
+
+  <h1>Welcome to 6156 Project Microservice2 Business Page</h1>
+
+  You can insert business right here
+<form action="/business" method="post" name="business">
+ <ul>
+  <li>
+    <label for="business_name">Business Name:</label>
+    <input type="text" id="business_name" name="business_name">
+  </li>
+  <li>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number">
+  </li>
+     <li>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email">
+  </li>
+  <li class="button">
+  <button type="submit">Register</button>
+</li>
+ </ul>
+
+</form>
+
+You can get all user information here
+
+<a href="/business">
+   <button>Get All Business</button>
+</a>
+
+
+  You can add your address right here
+<form action="/address" method="post" name="address">
+ <ul>
+  You id is {{userID}}
+  <li>
+    <label for="street_name1">street_name1:</label>
+    <input type="text" id="street_name1" name="street_name1">
+  </li>
+  <li>
+    <label for="street_name2">street_name2:</label>
+    <input type="text" id="street_name2" name="street_name2">
+  </li>
+  <li>
+    <label for="city">city:</label>
+    <input type="text" id="city" name="city">
+  </li>
+      <li>
+    <label for="state">state:</label>
+    <input type="text" id="state" name="state">
+  </li>
+  <li>
+    <label for="zipcode">zipcode:</label>
+    <input type="text" id="zipcode" name="zipcode">
+  </li>
+  <li class="button">
+  <button type="submit">update</button>
+</li>
+ </ul>
+
+</form>
+
+You can get all address information here
+
+<a href="/address">
+   <button>Get All Addresses</button>
+</a>
+
+
+</body>
+</html>

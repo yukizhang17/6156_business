@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Our Company</title>
+</head>
+
+<body>
+
+  You can add your address right here
+<form action="/address/{{addressID}}" method="post" name="address">
+ <ul>
+  You id is {{addressID}}
+  <li>
+    <label for="street_name1">street_name1:</label>
+    <input type="text" id="street_name1" name="street_name1">
+  </li>
+  <li>
+    <label for="street_name2">street_name2:</label>
+    <input type="text" id="street_name2" name="street_name2">
+  </li>
+  <li>
+    <label for="city">city:</label>
+    <input type="text" id="city" name="city">
+  </li>
+      <li>
+    <label for="state">state:</label>
+    <input type="text" id="state" name="state">
+  </li>
+  <li>
+    <label for="zipcode">zipcode:</label>
+    <input type="text" id="zipcode" name="zipcode">
+  </li>
+  <li class="button">
+  <button type="submit">update</button>
+</li>
+ </ul>
+
+</form>
+
+IF YOU WANT TO DELETE THIS ADDRESS, PRESS HERE!
+<form action="/address/{{addressID}}" method="post" name="delete">
+   <input type="hidden" id="delete" name="delete" value="3487">
+   <button method="post">DELETE</button>
+</form>
+
+    <script>
+      var jsonfile ={{jsonfile}};
+    </script>
+
+</body>
+</html>

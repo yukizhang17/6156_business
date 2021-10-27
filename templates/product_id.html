@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Our Company</title>
+</head>
+
+<body>
+
+  You can insert user right here
+<form action="/business/{{productID}}" method="post" name="business">
+ <ul>
+  You id is {{productID}}
+  <li>
+    <label for="product_name">Product Name:</label>
+    <input type="text" id="product_name" name="business_name">
+  </li>
+  <li>
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price">
+  </li>
+      <li>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description">
+  </li>
+  <li class="button">
+  <button type="submit">update</button>
+</li>
+ </ul>
+
+</form>
+
+IF YOU WANT TO DELETE YOUR ACCOUNT, PRESS HERE!
+<form action="/business/{{productID}}" method="post" name="delete">
+   <input type="hidden" id="delete" name="delete" value="3487">
+   <button method="post">DELETE</button>
+</form>
+
+    <script>
+      var jsonfile ={{jsonfile}};
+    </script>
+</body>
+</html>

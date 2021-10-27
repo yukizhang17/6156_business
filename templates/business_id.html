@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Our Company</title>
+</head>
+
+<body>
+
+  You can insert user right here
+<form action="/business/{{businessID}}" method="post" name="business">
+ <ul>
+  You id is {{userID}}
+  <li>
+    <label for="business_name">Business Name:</label>
+    <input type="text" id="business_name" name="business_name">
+  </li>
+  <li>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number">
+  </li>
+      <li>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email">
+  </li>
+  <li class="button">
+  <button type="submit">update</button>
+</li>
+ </ul>
+
+</form>
+
+IF YOU WANT TO DELETE YOUR ACCOUNT, PRESS HERE!
+<form action="/business/{{businessID}}" method="post" name="delete">
+   <input type="hidden" id="delete" name="delete" value="3487">
+   <button method="post">DELETE</button>
+</form>
+
+    <script>
+      var jsonfile ={{jsonfile}};
+    </script>
+</body>
+</html>
