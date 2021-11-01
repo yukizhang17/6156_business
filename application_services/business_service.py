@@ -3,7 +3,7 @@ from application_services.base_application_resource import BaseApplicationResour
 from application_services.address_service import *
 from application_services.product_service import *
 
-db_name = "business"
+db_name = "businesses"
 table_name = "business"
 address_table_name = "address"
 business_address_table_name = "business_address"
