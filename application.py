@@ -110,7 +110,7 @@ def address_id(addressID):
 
 
 
-'''
+
 if __name__ == '__main__':
     app.run()
-'''
+
