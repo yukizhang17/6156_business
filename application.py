@@ -16,7 +16,6 @@ def index_page():
 
 # newsId = shortuuid.uuid(url)
 
-
 @app.route('/business', methods=['GET', 'POST'])
 def business():
     if flask.request.method == 'POST':
@@ -108,7 +107,42 @@ def address_id(addressID):
         update_address(addressID, request.form)
         return "Address has been updated."
 
+@app.route('/product', methods=['GET', 'POST'])
+def product():
+    if flask.request.method == 'POST':
+        insert_product(request.form)
+        return "YOU are all set"
 
+    elif flask.request.method == 'GET':
+        return json.dumps(get_all_product())
+
+@app.route('/product/<productID>', methods=['GET', 'POST', 'DELETE'])
+def product_id(productID):
+    if flask.request.method == 'GET':
+        return json.dumps(get_product_by_pid(productID))
+
+    elif flask.request.method == 'POST':
+        if "delete" in flask.request.form:
+            # delete_user_info(userID) - userID get from url
+            delete_product(productID)
+            return "Product is already deleted."
+        update_product(productID, request.form)
+        return "Product has been updated."
+
+@app.route('/business/<businessID>/product', methods=['GET', 'POST'])
+def business_id_product(businessID):
+    if flask.request.method == 'POST':
+        try:
+            create_product_by_bid(businessID, request.form)
+            return "Address added successfully for business!"
+        except Exception as e1:
+            return "Failed to add address for business!"
+        # Insert a new address
+        # associate aid with uid -> get from selecting or email
+        # Insert new record to user_address
+
+    elif flask.request.method == 'GET':
+        return json.dumps(get_product_by_bid(businessID))
 
 '''
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ import uuid
 '''
 Global field
 '''
-DB = "business"
+DB = "businesses"
 PRODUCT_TABLE = "product"
 BUSINESS_PRODUCT_TABLE = 'business_product'
 
@@ -40,10 +40,9 @@ def get_all_product():
     Function to query all product data entries from product table
     '''
     try:
-        res = BaseApplicationResource.get_by_template(DB, PRODUCT_TABLE, None)
+        return BaseApplicationResource.get_by_template(DB, PRODUCT_TABLE, None)
     except:
         print("Ops, query of all product failed")
-    return res
 
 
 def get_product_by_pid(pid):
