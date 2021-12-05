@@ -10,6 +10,7 @@ import uuid
 Global field
 '''
 DB = "businesses"
+table_name = "business"
 PRODUCT_TABLE = "product"
 BUSINESS_PRODUCT_TABLE = 'business_product'
 
@@ -93,6 +94,19 @@ def delete_product_business(pid):
         return BaseApplicationResource.delete(DB, BUSINESS_PRODUCT_TABLE, template)
     except:
         print("ops, cannot delete record in business_product table")
+
+def get_business_by_pid(pid, limit, offset):
+    template = {"pid": pid}
+    buss_list = BaseApplicationResource.get_by_template(DB, BUSINESS_PRODUCT_TABLE, template, limit, offset)
+    bids = []
+    for buss in buss_list:
+        bids.append(buss['pid'])
+    print("bids: ", bids)
+    if len(bids) > 0:
+        business = BaseApplicationResource.find_in_condition(DB, table_name, None, "bid", bids)
+    else:
+        business = {}
+    return business
 
 
 

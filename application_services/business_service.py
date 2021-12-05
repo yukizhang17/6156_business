@@ -68,7 +68,7 @@ def get_product_by_bid(business_id, limit, offset):
         pids.append(prod['pid'])
     print("pids: ", pids)
     if len(pids) > 0:
-        products = BaseApplicationResource.find_in_condition(db_name, business_product_table_name, None, "pid", pids)
+        products = BaseApplicationResource.find_in_condition(db_name, product_table_name, None, "pid", pids)
     else:
         products = {}
     return products
