@@ -46,10 +46,10 @@ def get_address_by_bid(business_id):
     addr_list = BaseApplicationResource.get_by_template(db_name, business_address_table_name, template)
     aids = []
     for addr in addr_list:
-        aids.append(addr['aid'])
-    print("aids: ", aids)
+        aids.append(addr['baid'])
+    print("baids: ", aids)
     if len(aids) > 0:
-        addresses = BaseApplicationResource.find_in_condition(db_name, address_table_name, None, "aid", aids)
+        addresses = BaseApplicationResource.find_in_condition(db_name, address_table_name, None, "baid", aids)
     else:
         addresses = {}
     return addresses

@@ -134,9 +134,9 @@ def business_id_product(businessID):
     if flask.request.method == 'POST':
         try:
             create_product_by_bid(businessID, request.form)
-            return "Address added successfully for business!"
+            return "product added successfully for business!"
         except Exception as e1:
-            return "Failed to add address for business!"
+            return "Failed to add product for business!"
         # Insert a new address
         # associate aid with uid -> get from selecting or email
         # Insert new record to user_address
@@ -154,7 +154,7 @@ def business_id_product(businessID):
         return json.dumps(get_product_by_bid(businessID, limit, offset), default=str), 200
 
 @app.route('/product/<productID>/business', methods=['GET'])
-def product_id_business(product_id):
+def product_id_business(productID):
     if flask.request.method == 'GET':
         form = flask.request.form
         offset = None
@@ -165,7 +165,31 @@ def product_id_business(product_id):
                 limit = form[element]
             elif element == "offset":
                 offset = form[element]
-        return json.dumps(get_business_by_pid(product_id, limit, offset), default=str), 200
+        return json.dumps(get_business_by_pid(productID, limit, offset), default=str), 200
+
+# @app.route('/business/<businessID>/address', methods=['GET', 'POST'])
+# def business_id_address(businessID):
+#     if flask.request.method == 'POST':
+#         try:
+#             create_address_by_bid(businessID, request.form)
+#             return "Address added successfully for business!"
+#         except Exception as e1:
+#             return "Failed to add address for business!"
+#         # Insert a new address
+#         # associate aid with uid -> get from selecting or email
+#         # Insert new record to user_address
+#
+#     elif flask.request.method == 'GET':
+#         form = flask.request.form
+#         offset = None
+#         limit = None
+#
+#         for element in form:
+#             if element == "limit":
+#                 limit = form[element]
+#             elif element == "offset":
+#                 offset = form[element]
+#         return json.dumps(get_address_by_bid(businessID), default=str), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
