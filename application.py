@@ -153,6 +153,19 @@ def business_id_product(businessID):
                 offset = form[element]
         return json.dumps(get_product_by_bid(businessID, limit, offset), default=str), 200
 
+@app.route('/product/<productID>/business', methods=['GET'])
+def product_id_business(product_id):
+    if flask.request.method == 'GET':
+        form = flask.request.form
+        offset = None
+        limit = None
+
+        for element in form:
+            if element == "limit":
+                limit = form[element]
+            elif element == "offset":
+                offset = form[element]
+        return json.dumps(get_business_by_pid(product_id, limit, offset), default=str), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
