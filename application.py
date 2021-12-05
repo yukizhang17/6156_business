@@ -142,9 +142,18 @@ def business_id_product(businessID):
         # Insert new record to user_address
 
     elif flask.request.method == 'GET':
-        return json.dumps(get_product_by_bid(businessID))
+        form = flask.request.form
+        offset = None
+        limit = None
 
-'''
+        for element in form:
+            if element == "limit":
+                limit = form[element]
+            elif element == "offset":
+                offset = form[element]
+        return json.dumps(get_product_by_bid(businessID, limit, offset), default=str), 200
+
+
 if __name__ == '__main__':
-    app.run()
-'''
+    app.run(host='0.0.0.0')
+
