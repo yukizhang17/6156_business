@@ -45,6 +45,14 @@ def get_all_product():
     except:
         print("Ops, query of all product failed")
 
+def search_product_by_name(keyword):
+    '''
+    Function to search a product by name (match similar keywords)
+    '''
+    try:
+        return BaseApplicationResource.get_by_any_match(DB, PRODUCT_TABLE, "product_name", keyword)
+    except:
+        print("ops, the product not found")
 
 def get_product_by_pid(pid):
     '''

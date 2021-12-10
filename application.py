@@ -109,12 +109,15 @@ def address_id(addressID):
 
 @app.route('/product', methods=['GET', 'POST'])
 def product():
+    keywords = flask.request.args.get('name')
     if flask.request.method == 'POST':
         insert_product(request.form)
         return "YOU are all set"
-
-    elif flask.request.method == 'GET':
+    elif flask.request.method == 'GET' and keywords == None:
         return json.dumps(get_all_product())
+    else:
+        products = search_product_by_name(keywords)
+        return json.dumps(products)
 
 @app.route('/product/<productID>', methods=['GET', 'POST', 'DELETE'])
 def product_id(productID):
@@ -192,5 +195,5 @@ def product_id_business(productID):
 #         return json.dumps(get_address_by_bid(businessID), default=str), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5001)
 

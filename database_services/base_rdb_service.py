@@ -50,13 +50,13 @@ class BaseDataResource:
         return res
 
     @classmethod
-    def get_by_prefix(cls, db_schema, table_name, column_name, value_prefix):
+    def get_by_any_match(cls, db_schema, table_name, column_name, value_prefix):
 
         conn = BaseDataResource.get_db_connection()
         cur = conn.cursor()
 
         sql = "SELECT * FROM " + db_schema + "." + table_name + " WHERE " + \
-              column_name + " LIKE " + "'" + value_prefix + "%'" + " AND is_deleted = 0"
+              column_name + " LIKE " + "'" + "%" + value_prefix + "%'"
         print("SQL Statement = " + cur.mogrify(sql, None))
 
         res = cur.execute(sql)
