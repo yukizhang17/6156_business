@@ -20,7 +20,7 @@ def index_page():
 def business():
     if flask.request.method == 'POST':
         # User form['user'] for data insertion -> None
-        insert_business(request.json)
+        insert_business(request.form)
         return "You are all set"
         # create a new user record
             # 1. check if it exists
@@ -43,13 +43,13 @@ def business_id(businessID):
         #return json.dumps(get_user_by_id(userID))
 
     elif flask.request.method == 'POST':
-        if "delete" in flask.request.json:
+        if "delete" in flask.request.form:
             # delete_user_info(userID) - userID get from url
             delete_business(businessID)
             return "User is already deleted."
         # print(request.json)
         # update_user_info(userID) - userID get from url - request.json['user'] input form
-        update_business(businessID, request.json)
+        update_business(businessID, request.form)
         return "You are all set."
         # extract items from data about user's info name, email, etc.
 
@@ -59,7 +59,7 @@ def business_id(businessID):
 def business_id_address(businessID):
     if flask.request.method == 'POST':
         try:
-            create_address_by_bid(businessID, request.json)
+            create_address_by_bid(businessID, request.form)
             return "Address added successfully for business!"
         except Exception as e1:
             return "Failed to add address for business!"
@@ -83,7 +83,7 @@ def business_id_address(businessID):
 @app.route('/address', methods=['GET', 'POST'])
 def address():
     if flask.request.method == 'POST':
-        insert_address(request.json)
+        insert_address(request.form)
         return "You are all set"
         # check duplicate
         # insert a new address
@@ -100,7 +100,7 @@ def address_id(addressID):
         # return render_template("address_id.html", addressID=addressID, jsonfile=json.dumps(get_address_by_aid(addressID)))
 
     elif flask.request.method == 'POST':
-        if "delete" in flask.request.json:
+        if "delete" in flask.request.form:
             # delete_user_info(userID) - userID get from url
             delete_address(addressID)
             return "Address is already deleted."
@@ -111,7 +111,7 @@ def address_id(addressID):
 def product():
     keywords = flask.request.args.get('name')
     if flask.request.method == 'POST':
-        insert_product(request.json)
+        insert_product(request.form)
         return "YOU are all set"
     elif flask.request.method == 'GET' and keywords == None:
         return json.dumps(get_all_product())
@@ -129,14 +129,14 @@ def product_id(productID):
             # delete_user_info(userID) - userID get from url
             delete_product(productID)
             return "Product is already deleted."
-        update_product(productID, request.json)
+        update_product(productID, request.form)
         return "Product has been updated."
 
 @app.route('/business/<businessID>/product', methods=['GET', 'POST'])
 def business_id_product(businessID):
     if flask.request.method == 'POST':
         try:
-            create_product_by_bid(businessID, request.json)
+            create_product_by_bid(businessID, request.form)
             return "product added successfully for business!"
         except Exception as e1:
             return "Failed to add product for business!"
@@ -145,7 +145,7 @@ def business_id_product(businessID):
         # Insert new record to user_address
 
     elif flask.request.method == 'GET':
-        form = flask.request.json
+        form = flask.request.form
         offset = None
         limit = None
 
@@ -159,7 +159,7 @@ def business_id_product(businessID):
 @app.route('/product/<productID>/business', methods=['GET'])
 def product_id_business(productID):
     if flask.request.method == 'GET':
-        form = flask.request.json
+        form = flask.request.form
         offset = None
         limit = None
 
