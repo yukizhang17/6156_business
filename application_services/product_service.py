@@ -9,7 +9,8 @@ import uuid
 '''
 Global field
 '''
-DB = "business"
+DB = "businesses"
+table_name = "business"
 PRODUCT_TABLE = "product"
 BUSINESS_PRODUCT_TABLE = 'business_product'
 
@@ -40,11 +41,18 @@ def get_all_product():
     Function to query all product data entries from product table
     '''
     try:
-        res = BaseApplicationResource.get_by_template(DB, PRODUCT_TABLE, None)
+        return BaseApplicationResource.get_by_template(DB, PRODUCT_TABLE, None)
     except:
         print("Ops, query of all product failed")
-    return res
 
+def search_product_by_name(keyword):
+    '''
+    Function to search a product by name (match similar keywords)
+    '''
+    try:
+        return BaseApplicationResource.get_by_any_match(DB, PRODUCT_TABLE, "product_name", keyword)
+    except:
+        print("ops, the product not found")
 
 def get_product_by_pid(pid):
     '''
@@ -94,6 +102,19 @@ def delete_product_business(pid):
         return BaseApplicationResource.delete(DB, BUSINESS_PRODUCT_TABLE, template)
     except:
         print("ops, cannot delete record in business_product table")
+
+def get_business_by_pid(pid, limit, offset):
+    template = {"pid": pid}
+    buss_list = BaseApplicationResource.get_by_template(DB, BUSINESS_PRODUCT_TABLE, template, limit, offset)
+    bids = []
+    for buss in buss_list:
+        bids.append(buss['pid'])
+    print("bids: ", bids)
+    if len(bids) > 0:
+        business = BaseApplicationResource.find_in_condition(DB, table_name, None, "bid", bids)
+    else:
+        business = {}
+    return business
 
 
 

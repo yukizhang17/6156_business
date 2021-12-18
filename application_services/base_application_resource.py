@@ -33,7 +33,10 @@ class BaseApplicationResource(ABC):
         print(resource)
         return resource
 
-
+    @classmethod
+    def get_by_any_match(cls, db_name, table_name, column_name, value_prefix):
+        resource = BaseDataResource.get_by_any_match(db_name, table_name, column_name, value_prefix)
+        return resource
 
     @classmethod
     def get_by_resource_id(cls, key_values, field_list):

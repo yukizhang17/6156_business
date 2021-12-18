@@ -46,10 +46,10 @@ def get_address_by_bid(business_id):
     addr_list = BaseApplicationResource.get_by_template(db_name, business_address_table_name, template)
     aids = []
     for addr in addr_list:
-        aids.append(addr['aid'])
-    print("aids: ", aids)
+        aids.append(addr['baid'])
+    print("baids: ", aids)
     if len(aids) > 0:
-        addresses = BaseApplicationResource.find_in_condition(db_name, address_table_name, None, "aid", aids)
+        addresses = BaseApplicationResource.find_in_condition(db_name, address_table_name, None, "baid", aids)
     else:
         addresses = {}
     return addresses
@@ -60,21 +60,21 @@ def create_address_by_bid(business_id, create_data):
     template = {"bid": business_id, "baid": baid}
     BaseApplicationResource.create(db_name, business_address_table_name, template)
 
-def get_product_by_bid(product_id):
-    template = {"bid": product_id}
-    addr_list = BaseApplicationResource.get_by_template(db_name, business_address_table_name, template)
-    aids = []
-    for addr in addr_list:
-        aids.append(addr['aid'])
-    print("aids: ", aids)
-    if len(aids) > 0:
-        addresses = BaseApplicationResource.find_in_condition(db_name, address_table_name, None, "aid", aids)
+def get_product_by_bid(business_id, limit, offset):
+    template = {"bid": business_id}
+    prod_list = BaseApplicationResource.get_by_template(db_name, business_product_table_name, template, limit, offset)
+    pids = []
+    for prod in prod_list:
+        pids.append(prod['pid'])
+    print("pids: ", pids)
+    if len(pids) > 0:
+        products = BaseApplicationResource.find_in_condition(db_name, product_table_name, None, "pid", pids)
     else:
-        addresses = {}
-    return addresses
+        products = {}
+    return products
 
-def create_product_by_bid(product_id, create_data):
+def create_product_by_bid(business_id, create_data):
     # check if address exists?
     pid = insert_product(create_data)
-    template = {"bid": product_id, "aid": pid}
-    BaseApplicationResource.create(db_name, business_address_table_name, template)
+    template = {"bid": business_id, "pid": pid}
+    BaseApplicationResource.create(db_name, business_product_table_name, template)

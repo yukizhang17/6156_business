@@ -9,7 +9,7 @@ import uuid
 '''
 Global field
 '''
-DB = "business"
+DB = "businesses"
 ADDRESS_TABLE = "address"
 BUSINESS_ADDRESS_TABLE = 'business_address'
 
@@ -48,7 +48,7 @@ def get_all_address():
     return res
 
 
-def get_address_by_aid(aid):
+def get_address_by_aid(baid):
     '''
     Function to query a sepcific address by its aid
     '''
